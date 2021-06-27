@@ -36,6 +36,6 @@ jobs:
           sudo service openvpn@client start
           sleep 10
           curl ifconfig.co
-          python ./main.py "${{ secrets.USER_1 }}" "${{ secrets.PASS_1 }}"
-          python ./main.py "${{ secrets.USER_2 }}" "${{ secrets.PASS_2 }}"
-          python ./main.py "${{ secrets.USER_3 }}" "${{ secrets.PASS_3 }}"
+          python ./main.py "${{ secrets.USER_1 }}" "${{ secrets.PASS_1 }}" "" "${{ secrets.MAIL_SERVER }}" "${{ secrets.MAIL_LOGIN }}" "${{ secrets.MAIL_PASS }}" "${{ secrets.RECV_1 }}"
+          python ./main.py "${{ secrets.USER_2 }}" "${{ secrets.PASS_2 }}" "" "${{ secrets.MAIL_SERVER }}" "${{ secrets.MAIL_LOGIN }}" "${{ secrets.MAIL_PASS }}" "${{ secrets.RECV_2 }}"
+          python ./main.py "${{ secrets.USER_3 }}" "${{ secrets.PASS_3 }}" "" "${{ secrets.MAIL_SERVER }}" "${{ secrets.MAIL_LOGIN }}" "${{ secrets.MAIL_PASS }}" "${{ secrets.RECV_3 }}"
