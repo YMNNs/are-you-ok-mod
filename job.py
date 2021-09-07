@@ -185,12 +185,13 @@ class Job:
             return False, self._unexpected_exception(e)
 
     def do(self, notifier: Notifier):
-        today = time.strftime('%m/%d/%Y')
+        today = time.strftime('%x')
+        now = time.strftime('%c (%Z)')
 
         # 登陆
         success, msg = self._login()
         if not success:
-            notifier.send(f"{today} 登陆失败", msg)
+            notifier.send(f"{today} 登录失败", msg)
             return
         # 进入平台
         success, msg = self._login_service()
@@ -209,11 +210,11 @@ class Job:
             if not success:
                 notifier.send(f"{today} 打卡失败", msg)
                 return
-            notifier.send(f"{today} 打卡成功", "I'm fine, thank you.")
+            notifier.send(f"{today} 已打卡", f"打卡时间: {now}")
 
         # 上报体温
         success, msg = self._report_body_temperature()
         if not success:
             notifier.send(f"{today} 上报体温失败", msg)
             return
-        notifier.send(f"{today} 上报体温成功", "I'm fine, really thank you.")
+        notifier.send(f"{today} 已上报体温", f"上报体温时间: {now}")

@@ -13,8 +13,8 @@ class Notifier:
 
 
 class MailNotifier(Notifier):
-    _from: Header = Header("自动打卡小助手", 'utf-8')
-    _to: Header = Header("小主", 'utf-8')
+    _from: Header = Header("自动打卡", 'utf-8')
+    _to: Header = Header("我", 'utf-8')
 
     def __init__(self, host: str, username: str, password: str, receiver: str):
         self._host: str = host
