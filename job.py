@@ -192,30 +192,30 @@ class Job:
         # 登陆
         success, msg = self._login()
         if not success:
-            notifier.send(f"{now} 登录失败", msg)
+            notifier.send(f"{hms} 登录失败", msg)
             return
         # 进入平台
         success, msg = self._login_service()
         if not success:
-            notifier.send(f"{now} 鉴权失败", msg)
+            notifier.send(f"{hms} 鉴权失败", msg)
             return
         # 获取信息
         success, msg = self._get_info()
         if not success:
-            notifier.send(f"{now} 获取已有信息失败", msg)
+            notifier.send(f"{hms} 获取已有信息失败", msg)
             return
         # 是否今日有签到过
         if not self._is_reported():
             # 打卡
             success, msg = self._update_info()
             if not success:
-                notifier.send(f"{today} 打卡失败", msg)
+                notifier.send(f"{hms} 打卡失败", msg)
                 return
-            notifier.send(f"{today} 已打卡", f"打卡时间: {now}")
+            notifier.send(f"{today} 已完成健康打卡", f"打卡时间: {now}")
 
         # 上报体温
         success, msg = self._report_body_temperature()
         if not success:
             notifier.send(f"{hms} 上报体温失败", msg)
             return
-        notifier.send(f"{hms} 已上报体温", f"上报体温时间: {now}")
+        # notifier.send(f"{hms} 已上报体温", f"上报体温时间: {now}")
