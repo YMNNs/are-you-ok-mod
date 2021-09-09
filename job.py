@@ -187,21 +187,22 @@ class Job:
     def do(self, notifier: Notifier):
         today = time.strftime('%x')
         now = time.strftime('%c (%Z)')
+        hms = time.strftime('%X')
 
         # 登陆
         success, msg = self._login()
         if not success:
-            notifier.send(f"{today} 登录失败", msg)
+            notifier.send(f"{now} 登录失败", msg)
             return
         # 进入平台
         success, msg = self._login_service()
         if not success:
-            notifier.send(f"{today} 鉴权失败", msg)
+            notifier.send(f"{now} 鉴权失败", msg)
             return
         # 获取信息
         success, msg = self._get_info()
         if not success:
-            notifier.send(f"{today} 获取已有信息失败", msg)
+            notifier.send(f"{now} 获取已有信息失败", msg)
             return
         # 是否今日有签到过
         if not self._is_reported():
@@ -215,6 +216,6 @@ class Job:
         # 上报体温
         success, msg = self._report_body_temperature()
         if not success:
-            notifier.send(f"{today} 上报体温失败", msg)
+            notifier.send(f"{hms} 上报体温失败", msg)
             return
-        notifier.send(f"{today} 已上报体温", f"上报体温时间: {now}")
+        notifier.send(f"{hms} 已上报体温", f"上报体温时间: {now}")
