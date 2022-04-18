@@ -26,11 +26,11 @@ jobs:
           pip install -r requirements.txt
       - name: Setup VPN
         run: |
-          sudo chmod 777 client.conf
-          sudo cp client.conf /etc/openvpn/
-          sudo chmod 777 pass
-          sudo cp pass /etc/openvpn/
-          sudo ls /etc/openvpn/
+          # sudo chmod 777 client.conf
+          # sudo cp client.conf /etc/openvpn/
+          # sudo chmod 777 pass
+          # sudo cp pass /etc/openvpn/
+          # sudo ls /etc/openvpn/
       - name: Run
         run: |
           # sudo service openvpn@client start
